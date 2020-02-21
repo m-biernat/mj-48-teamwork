@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class Player : MonoBehaviour
 
     private Rigidbody rb;
 
-    private bool isReady = false;
+    private bool isReady = true;
+
+    public GameObject boat;
+    private Rigidbody boatRb;
 
     private void Start()
     {
@@ -18,6 +22,7 @@ public class Player : MonoBehaviour
         clampMax = z + range;
 
         rb = GetComponent<Rigidbody>();
+        boatRb = boat.GetComponent<Rigidbody>();
     }
 
     public void Move(float input)
@@ -43,6 +48,27 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        isReady = true;
+        if (!isReady)
+        {
+            isReady = true;
+            OnSplash();
+        }
+    }
+
+    private void OnSplash()
+    {
+        Vector3 heading = boat.transform.position - transform.position;
+
+        float distance = heading.magnitude;
+        Vector3 direction = heading / distance;
+
+        float force = 1.0f / (distance * 0.04f);
+
+        float angle = Vector3.Angle(direction, boat.transform.position);
+
+        Debug.Log(angle);
+
+        boatRb.AddForce(direction * force, ForceMode.Impulse);
+        boatRb.GetComponent<Rigidbody>().AddTorque(0.0f, angle, 0.0f);
     }
 }
