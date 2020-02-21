@@ -64,9 +64,8 @@ public class Player : MonoBehaviour
 
         float force = 1.0f / (distance * 0.04f);
 
-        float angle = Vector3.Angle(direction, boat.transform.position);
-
-        Debug.Log(angle);
+        //float angle = Vector3.Angle(direction, boat.transform.position);
+        float angle = Random.Range(30.0f, 90.0f);
 
         boatRb.AddForce(direction * force, ForceMode.Impulse);
         boatRb.GetComponent<Rigidbody>().AddTorque(0.0f, angle, 0.0f);
