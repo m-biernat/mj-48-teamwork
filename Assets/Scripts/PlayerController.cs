@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,11 +7,6 @@ public class PlayerController : MonoBehaviour
     private float inputPlayer1, inputPlayer2;
 
     public float speed, force;
-
-    void Start()
-    {
-        
-    }
 
     private void Update()
     {

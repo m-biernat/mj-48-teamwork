@@ -68,6 +68,6 @@ public class Player : MonoBehaviour
         float angle = Random.Range(30.0f, 90.0f);
 
         boatRb.AddForce(direction * force, ForceMode.Impulse);
-        boatRb.GetComponent<Rigidbody>().AddTorque(0.0f, angle, 0.0f);
+        boatRb.AddTorque(0.0f, angle, 0.0f);
     }
 }
