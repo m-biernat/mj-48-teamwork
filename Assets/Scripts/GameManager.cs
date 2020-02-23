@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     [Space]
     public TextMeshProUGUI scoreText;
 
+    [Space]
+    public GameObject gameOverUI;
+    public PlayerController playerController;
+
     private void Start()
     {
         score = 0;
@@ -55,8 +59,12 @@ public class GameManager : MonoBehaviour
 
         Whirl whirl = go.GetComponent<Whirl>();
 
-        whirl.boat = boat;
-        StartCoroutine(whirl.Spawn(delay));
+        if (boat)
+        {
+            whirl.boat = boat;
+
+            StartCoroutine(whirl.Spawn(delay));
+        }
     }
 
     private void OnCoinPickedUp()
@@ -69,5 +77,17 @@ public class GameManager : MonoBehaviour
     private void OnWhirlEnd()
     {
         SpawnWhirl(3.0f);
+    }
+
+    public void GameOver()
+    {
+        playerController.enabled = false;
+        gameOverUI.SetActive(true);
+    }
+
+    private void OnDestroy()
+    {
+        Coin.OnPickUp -= OnCoinPickedUp;
+        Whirl.OnWhirlEnd -= OnWhirlEnd;
     }
 }

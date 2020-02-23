@@ -7,7 +7,6 @@ public class Continue : MonoBehaviour
         None,
         Continue,
         Play,
-        Replay
     };
 
     public Mode currentMode;
@@ -34,9 +33,7 @@ public class Continue : MonoBehaviour
                 break;
 
             case Mode.Play:
-                break;
-
-            case Mode.Replay:
+                LevelChanger.instance.FadeOut();
                 break;
         }
     }

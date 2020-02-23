@@ -15,7 +15,8 @@ public class Whirl : MonoBehaviour
 
     void Start()
     {
-        boatRb = boat.GetComponent<Rigidbody>();
+        if (boat)
+            boatRb = boat.GetComponent<Rigidbody>();
     }
     
     void FixedUpdate()
@@ -72,8 +73,8 @@ public class Whirl : MonoBehaviour
             
             if (counter == 25)
             {
-                StartCoroutine(Tween.Shrink(boat, 50, true));
                 isDeadly = false;
+                other.GetComponent<Boat>().Kill();
             }
         }
     }
