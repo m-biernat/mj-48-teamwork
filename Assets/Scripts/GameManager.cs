@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public static int score;
+    public int score;
 
     public GameObject boat;
 
@@ -17,6 +18,9 @@ public class GameManager : MonoBehaviour
     [Space]
     public GameObject gameOverUI;
     public PlayerController playerController;
+
+    [Space]
+    public Text highScore;
 
     private void Start()
     {
@@ -81,6 +85,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        if (HighScore.value < score)
+        {
+            HighScore.Save(score);
+            highScore.text = "WHOA! NEW HIGH SCORE!";
+        }
+        else
+            highScore.text = "YOUR HIGH SCORE IS <b>"+ HighScore.value + "</b>";
+
         playerController.enabled = false;
         gameOverUI.SetActive(true);
     }

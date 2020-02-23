@@ -550,6 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2cef079c29ba5341be6cc6d24990729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   boat: {fileID: 132935422}
   coinPrefab: {fileID: 5164177761214540354, guid: cf8feb0c0f9d46b458389802437a86ce,
     type: 3}
@@ -558,6 +559,7 @@ MonoBehaviour:
   scoreText: {fileID: 1317561969}
   gameOverUI: {fileID: 1782051299}
   playerController: {fileID: 1094566709}
+  highScore: {fileID: 1267363066}
 --- !u!1 &1267363063
 GameObject:
   m_ObjectHideFlags: 0
