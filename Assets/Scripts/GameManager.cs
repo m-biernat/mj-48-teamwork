@@ -16,9 +16,10 @@ public class GameManager : MonoBehaviour
         score = 0;
 
         SpawnCoin();
-        //SpawnWhirl(3.0f);
+        SpawnWhirl(3.0f);
 
         Coin.OnPickUp += OnCoinPickedUp;
+        Whirl.OnWhirlEnd += OnWhirlEnd;
     }
 
     public static Vector3 GetRandomPosition(GameObject prefab)
@@ -37,6 +38,9 @@ public class GameManager : MonoBehaviour
         GameObject go = Instantiate(coinPrefab);
 
         go.transform.position = GetRandomPosition(coinPrefab);
+        go.SetActive(true);
+
+        StartCoroutine(Tween.Enlarge(go, 50, 1.0f));
     }
 
     private void SpawnWhirl(float delay)
@@ -44,6 +48,7 @@ public class GameManager : MonoBehaviour
         GameObject go = Instantiate(whirlPrefab);
 
         go.transform.position = GetRandomPosition(whirlPrefab);
+        go.SetActive(true);
 
         Whirl whirl = go.GetComponent<Whirl>();
 
@@ -55,5 +60,10 @@ public class GameManager : MonoBehaviour
     {
         score++;
         SpawnCoin();
+    }
+
+    private void OnWhirlEnd()
+    {
+        SpawnWhirl(3.0f);
     }
 }

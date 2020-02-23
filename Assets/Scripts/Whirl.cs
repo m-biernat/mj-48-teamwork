@@ -10,6 +10,9 @@ public class Whirl : MonoBehaviour
 
     private int counter;
 
+    public delegate void OnWhirlEndDelegate();
+    public static OnWhirlEndDelegate OnWhirlEnd;
+
     void Start()
     {
         boatRb = boat.GetComponent<Rigidbody>();
@@ -35,6 +38,8 @@ public class Whirl : MonoBehaviour
 
     public IEnumerator Spawn(float delay)
     {
+        yield return new WaitForSeconds(0.5f);
+
         StartCoroutine(Tween.Enlarge(gameObject, 50, 0.5f));
 
         yield return new WaitForSeconds(delay);
@@ -46,6 +51,17 @@ public class Whirl : MonoBehaviour
         StartCoroutine(Tween.Enlarge(gameObject, 50, 1.0f));
 
         isDeadly = true;
+        StartCoroutine(Whirling());
+    }
+
+    private IEnumerator Whirling()
+    {
+        yield return new WaitForSeconds(6.0f);
+
+        OnWhirlEnd();
+        StartCoroutine(Tween.Shrink(gameObject, 50, true));
+
+        Destroy(gameObject, 1.0f);
     }
 
     private void OnTriggerStay(Collider other)
