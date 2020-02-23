@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     [Space]
     public Text highScore;
 
+    [Space]
+    public int secondWhirlTrigger;
+
     private void Start()
     {
         score = 0;
@@ -76,6 +79,9 @@ public class GameManager : MonoBehaviour
         score++;
         scoreText.text = score.ToString();
         SpawnCoin();
+
+        if (score == secondWhirlTrigger)
+            SpawnWhirl(5.0f);
     }
 
     private void OnWhirlEnd()

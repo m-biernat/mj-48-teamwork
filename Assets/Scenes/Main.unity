@@ -942,6 +942,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 1782051299}
   playerController: {fileID: 1094566709}
   highScore: {fileID: 1267363066}
+  secondWhirlTrigger: 10
 --- !u!1 &1235449935
 GameObject:
   m_ObjectHideFlags: 0
