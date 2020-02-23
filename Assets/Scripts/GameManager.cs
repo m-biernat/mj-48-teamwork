@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [Space]
     public GameObject coinPrefab;
     public GameObject whirlPrefab;
+
+    [Space]
+    public TextMeshProUGUI scoreText;
 
     private void Start()
     {
@@ -59,6 +62,7 @@ public class GameManager : MonoBehaviour
     private void OnCoinPickedUp()
     {
         score++;
+        scoreText.text = score.ToString();
         SpawnCoin();
     }
 

@@ -70,7 +70,7 @@ public class Whirl : MonoBehaviour
         {
             counter++;
             
-            if (counter == 50)
+            if (counter == 25)
             {
                 StartCoroutine(Tween.Shrink(boat, 50, true));
                 isDeadly = false;
