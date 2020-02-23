@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public GameObject boat;
     private Rigidbody boatRb;
 
+    public AudioSource audioSource;
+
     private void Start()
     {
         float z = transform.position.z;
@@ -51,6 +53,7 @@ public class Player : MonoBehaviour
         if (!isReady)
         {
             isReady = true;
+            audioSource.Play();
             OnSplash();
         }
     }

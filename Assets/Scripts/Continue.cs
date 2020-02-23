@@ -13,6 +13,8 @@ public class Continue : MonoBehaviour
 
     public Animator animator;
 
+    public AudioSource audioSource;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -29,10 +31,12 @@ public class Continue : MonoBehaviour
                 break;
 
             case Mode.Continue:
+                audioSource.Play();
                 animator.SetTrigger("continue");
                 break;
 
             case Mode.Play:
+                audioSource.Play();
                 LevelChanger.instance.FadeOut();
                 break;
         }
